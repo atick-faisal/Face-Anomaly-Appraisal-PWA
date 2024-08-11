@@ -1,2 +1,2 @@
-/api/*  https://example.com/:splat  200!
+/api/*  http://api.faceapp.qu-mlg.com/:splat  200!
 /*    /index.html   200

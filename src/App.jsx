@@ -6,25 +6,25 @@ function App() {
     const [count, setCount] = useState(0);
 
     return (
-        <>
-            <div>
-                <a href="#" target="_blank">
-                    <img src={logo} className="logo" alt="App logo" />
-                </a>
-            </div>
-            <h1>React.js PWA</h1>
-            <div className="card">
-                <button onClick={() => setCount((count) => count + 1)}>
-                    count is {count}
-                </button>
-                <p>
-                    Edit <code>src/App.jsx</code> and save to test HMR
-                </p>
-            </div>
-            <p className="read-the-docs">
-                Click on the Vite and React logos to learn more
+        <div className="h-screen flex flex-col p-8 items-center gap-8 justify-center">
+            <a href="#" target="_blank">
+                <img src={logo} className="w-40" alt="App logo" />
+            </a>
+            <p className="text-3xl">React.js PWA</p>
+            <button
+                className="btn"
+                onClick={() => setCount((count) => count + 1)}
+            >
+                count is {count}
+            </button>
+            <p>
+                Edit{" "}
+                <code className="font-mono rounded p-1 bg-zinc-800">
+                    src/App.jsx
+                </code>{" "}
+                and save to test HMR
             </p>
-        </>
+        </div>
     );
 }
 

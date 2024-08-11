@@ -32,4 +32,14 @@ export default defineConfig({
             },
         }),
     ],
+    server: {
+        proxy: {
+            "/api": {
+                target: "https://example.com/",
+                changeOrigin: true,
+                rewrite: (path) => path.replace(/^\/api/, ""),
+                secure: false,
+            },
+        },
+    },
 });

@@ -44,31 +44,31 @@ function Config({
             <p className="text-xl">Normalization Technique</p>
             <div className="form-control">
                 <label className="label cursor-pointer">
-                    <span className="label-text">GAN</span>
+                    <span className="label-text">StyleGAN</span>
                     <input
                         type="radio"
                         name="normalization"
-                        value="GAN"
+                        value="stylegan"
                         className="radio checked:bg-blue-500"
-                        checked={normalizationTechnique === "GAN"}
+                        checked={normalizationTechnique === "stylegan"}
                         onChange={handleNormalizationChange}
                     />
                 </label>
             </div>
             <div className="form-control">
                 <label className="label cursor-pointer">
-                    <span className="label-text">Implanting</span>
+                    <span className="label-text">Automat</span>
                     <input
                         type="radio"
                         name="normalization"
-                        value="Implanting"
+                        value="automat"
                         className="radio checked:bg-blue-500"
-                        checked={normalizationTechnique === "Implanting"}
+                        checked={normalizationTechnique === "automat"}
                         onChange={handleNormalizationChange}
                     />
                 </label>
             </div>
-            <div className="form-control">
+            {/* <div className="form-control">
                 <label className="label cursor-pointer">
                     <span className="label-text">Encoder</span>
                     <input
@@ -80,20 +80,20 @@ function Config({
                         onChange={handleNormalizationChange}
                     />
                 </label>
-            </div>
+            </div> */}
 
             <br></br>
 
             <p className="text-xl">Performance Metric</p>
             <div className="form-control">
                 <label className="label cursor-pointer">
-                    <span className="label-text">Deep Learning</span>
+                    <span className="label-text">LPIPS</span>
                     <input
                         type="radio"
                         name="performanceMetric"
-                        value="DL"
+                        value="LPIPS"
                         className="radio checked:bg-blue-500"
-                        checked={performanceMetric === "DL"}
+                        checked={performanceMetric === "LPIPS"}
                         onChange={handlePerformanceMetricChange}
                     />
                 </label>
@@ -117,9 +117,9 @@ function Config({
                     <input
                         type="radio"
                         name="performanceMetric"
-                        value="Pixel-Wise"
+                        value="Pixelwise"
                         className="radio checked:bg-blue-500"
-                        checked={performanceMetric === "Pixel-Wise"}
+                        checked={performanceMetric === "Pixelwise"}
                         onChange={handlePerformanceMetricChange}
                     />
                 </label>

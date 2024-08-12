@@ -10,8 +10,9 @@ import axios from "axios";
 function App() {
     const [screen, setScreen] = useState(1);
     const [name, setName] = useState("");
-    const [normalizationTechnique, setNormalizationTechnique] = useState("GAN");
-    const [performanceMetric, setPerformanceMetric] = useState("DL");
+    const [normalizationTechnique, setNormalizationTechnique] =
+        useState("stylegan");
+    const [performanceMetric, setPerformanceMetric] = useState("LPIPS");
     const [image, setImage] = useState(null);
     const [imgSrc, setImageSrc] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -81,8 +82,8 @@ function App() {
     };
 
     return (
-        <>
-            <div className="flex flex-col h-screen p-4">
+        <div className="max-w-md mx-auto">
+            <div className="flex flex-col h-screen p-4 max-w-lg">
                 <NavBar />
                 <Steps screen={screen} />
                 <div className="flex-grow place-content-center p-4">
@@ -153,7 +154,7 @@ function App() {
                     )}
                 </div>
             </div>
-        </>
+        </div>
     );
 }
 

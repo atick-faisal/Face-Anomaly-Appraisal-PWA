@@ -13,9 +13,9 @@ export default defineConfig({
                 "mask-icon.svg",
             ],
             manifest: {
-                name: "React.js PWA",
-                short_name: "PWA",
-                description: "Template for React.js PWA",
+                name: "Deep Smile",
+                short_name: "Deep Smile",
+                description: "App for reconstructing face abnormality",
                 theme_color: "#242424",
                 icons: [
                     {

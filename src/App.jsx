@@ -46,6 +46,8 @@ function App() {
                     setNormalizedImage(
                         `data:image/png;base64,${response.data.normalized_image}`
                     );
+                } else if (response.status == 503) {
+                    setScore("Server is busy. Please try again later.");
                 } else {
                     setScore(response.data.error);
                 }
@@ -53,7 +55,7 @@ function App() {
             })
             .catch((error) => {
                 console.error(error);
-                setScore(error.response.data.error);
+                setScore(error.message);
             })
             .finally(() => {
                 setLoading(false);
@@ -121,7 +123,7 @@ function App() {
                 <div className="p-4 flex flex-row w-full">
                     {screen != 1 && (
                         <button
-                            className="btn btn-circle"
+                            className="btn btn-circle btn-primary"
                             onClick={() => setScreen(screen - 1)}
                         >
                             <svg
@@ -138,7 +140,10 @@ function App() {
                     <div className="flex-grow"></div>
                     {screen != 3 && (
                         <button
-                            className="btn btn-circle"
+                            className="btn btn-circle btn-primary"
+                            disabled={
+                                name == "" || (screen == 2 && image == null)
+                            }
                             onClick={() => onNextClick()}
                         >
                             <svg

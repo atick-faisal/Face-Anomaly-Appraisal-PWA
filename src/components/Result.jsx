@@ -19,7 +19,7 @@ function Result({
                 <h1 className="text-3xl mb-4">{normalizationTechnique}</h1>
             )}
             {processedImage && <p className="text-xl">Score</p>}
-            {score && <h1 className="text-3xl mb-4">{score}</h1>}
+            {score && <h1 className="text-3xl mb-4 text-center">{score}</h1>}
             {processedImage && <p className="text-xl">Input Image</p>}
             {processedImage && <img className="mb-4" src={inputImage}></img>}
             {processedImage && <p className="text-xl">Processed Image</p>}

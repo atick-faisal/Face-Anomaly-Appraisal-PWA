@@ -35,7 +35,7 @@ export default defineConfig({
     server: {
         proxy: {
             "/api": {
-                target: "http://api.faceapp.qu-mlg.com/",
+                target: "https://api.faceapp.qu-mlg.com/",
                 changeOrigin: true,
                 rewrite: (path) => path.replace(/^\/api/, ""),
                 secure: false,

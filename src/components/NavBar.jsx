@@ -27,7 +27,7 @@ function NavBar() {
                         tabIndex={0}
                         className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
                     >
-                        <li>
+                        {/* <li>
                             <a>Homepage</a>
                         </li>
                         <li>
@@ -35,7 +35,7 @@ function NavBar() {
                         </li>
                         <li>
                             <a>About</a>
-                        </li>
+                        </li> */}
                     </ul>
                 </div>
             </div>
@@ -43,7 +43,7 @@ function NavBar() {
                 <a className="btn btn-ghost text-xl">DeepSmile</a>
             </div>
             <div className="navbar-end">
-                <button className="btn btn-ghost btn-circle">
+                {/* <button className="btn btn-ghost btn-circle">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="h-5 w-5"
@@ -77,7 +77,7 @@ function NavBar() {
                         </svg>
                         <span className="badge badge-xs badge-primary indicator-item"></span>
                     </div>
-                </button>
+                </button> */}
             </div>
         </div>
     );

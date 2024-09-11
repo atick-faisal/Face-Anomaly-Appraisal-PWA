@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import placeholder from "../assets/placeholder.png";
 
 function Upload({ imageSrc, onSelectImage }) {
     const fileInputRef = useRef(null);
@@ -23,15 +24,22 @@ function Upload({ imageSrc, onSelectImage }) {
     return (
         <div className="flex flex-col h-full">
             <div className="mb-4">
-                <p className="text-xl">Select Image</p>
+                <p className="text-xl w-full text-center">Select an Image</p>
             </div>
 
-            <div className="flex-grow">
+            <div className="flex-grow w-full">
                 {imageSrc && (
                     <img
                         src={imageSrc}
                         alt="Image Preview"
                         className="w-full h-auto"
+                    />
+                )}
+                {!imageSrc && (
+                    <img
+                        src={placeholder}
+                        alt="Image Preview"
+                        className="w-full h-auto opacity-40"
                     />
                 )}
             </div>

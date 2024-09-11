@@ -55,7 +55,7 @@ function App() {
             })
             .catch((error) => {
                 console.error(error);
-                setScore(error.message);
+                setScore(error.message + ": " + error.response.data.error);
             })
             .finally(() => {
                 setLoading(false);
@@ -90,6 +90,14 @@ function App() {
                 <Steps screen={screen} />
                 <div className="flex-grow place-content-center p-4">
                     {screen == 1 && (
+                        <Upload
+                            imageSrc={imgSrc}
+                            onSelectImage={(src, img) =>
+                                onSelectImage(src, img)
+                            }
+                        />
+                    )}
+                    {screen == 2 && (
                         <Config
                             name={name}
                             onNameChange={setName}
@@ -101,18 +109,11 @@ function App() {
                             onPerformanceMetricChange={setPerformanceMetric}
                         />
                     )}
-                    {screen == 2 && (
-                        <Upload
-                            imageSrc={imgSrc}
-                            onSelectImage={(src, img) =>
-                                onSelectImage(src, img)
-                            }
-                        />
-                    )}
                     {screen == 3 && (
                         <Result
                             loading={loading}
                             normalizationTechnique={normalizationTechnique}
+                            performanceMetric={performanceMetric}
                             score={score}
                             inputImage={imgSrc}
                             processedImage={processedImage}
@@ -142,7 +143,7 @@ function App() {
                         <button
                             className="btn btn-circle btn-primary"
                             disabled={
-                                name == "" || (screen == 2 && image == null)
+                                image == null || (screen == 2 && name == "")
                             }
                             onClick={() => onNextClick()}
                         >

@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Config from "./components/Config";
 import NavBar from "./components/NavBar";
 import Upload from "./components/Upload";
 import Result from "./components/Result";
 import Steps from "./components/Steps";
+import html2canvas from "html2canvas-pro";
 
 import axios from "axios";
 
@@ -19,6 +20,8 @@ function App() {
     const [processedImage, setProcessedImage] = useState(null);
     const [normalizedImage, setNormalizedImage] = useState(null);
     const [score, setScore] = useState(null);
+
+    const screenshotRef = useRef(null);
 
     const upload = () => {
         setScore(null);
@@ -62,6 +65,43 @@ function App() {
             });
     };
 
+    const downloadCSV = () => {
+        const headers = [
+            "Name",
+            "Normalization Technique",
+            "Performance Metric",
+            "Score",
+        ];
+        const csvRows = [
+            headers.join(","),
+            [name, normalizationTechnique, performanceMetric, score].join(","),
+        ];
+        const csvString = csvRows.join("\n");
+        const blob = new Blob([csvString], { type: "text/csv" });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = "results.csv";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
+
+    const downloadScreenshot = () => {
+        html2canvas(document.body)
+            .then((canvas) => {
+                const image = canvas.toDataURL("image/png");
+                const link = document.createElement("a");
+                link.href = image;
+                link.download = "screenshot.png";
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            })
+            .catch((error) => {
+                console.error("Screenshot capture failed:", error);
+            });
+    };
+
     const onSelectImage = (src, img) => {
         setImageSrc(src);
         setImage(img);
@@ -84,7 +124,7 @@ function App() {
     };
 
     return (
-        <div className="max-w-md mx-auto">
+        <div ref={screenshotRef} className="max-w-md mx-auto">
             <div className="flex flex-col h-screen p-4 max-w-lg">
                 <NavBar />
                 <Steps screen={screen} />
@@ -112,6 +152,8 @@ function App() {
                     {screen == 3 && (
                         <Result
                             loading={loading}
+                            onDownloadClick={downloadCSV}
+                            onCaptureClick={downloadScreenshot}
                             normalizationTechnique={normalizationTechnique}
                             performanceMetric={performanceMetric}
                             score={score}
@@ -132,7 +174,7 @@ function App() {
                                 height="24px"
                                 viewBox="0 -960 960 960"
                                 width="24px"
-                                fill="#e8eaed"
+                                fill="#000"
                             >
                                 <path d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z" />
                             </svg>
@@ -152,7 +194,7 @@ function App() {
                                 height="24px"
                                 viewBox="0 -960 960 960"
                                 width="24px"
-                                fill="#e8eaed"
+                                fill="#000"
                             >
                                 <path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z" />
                             </svg>

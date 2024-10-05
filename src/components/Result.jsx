@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 
 function Result({
     loading,
+    onDownloadClick,
+    onCaptureClick,
     normalizationTechnique,
     performanceMetric,
     score,
@@ -25,6 +27,22 @@ function Result({
                 <span className="loading loading-infinity loading-lg"></span>
             )}
             {loading && <p>Please Wait ...</p>}
+            {processedImage && (
+                <button
+                    className="btn w-full mb-4 btn-primary"
+                    onClick={onDownloadClick}
+                >
+                    Download Results
+                </button>
+            )}
+            {processedImage && (
+                <button
+                    className="btn w-full mb-4 btn-secondary"
+                    onClick={onCaptureClick}
+                >
+                    Save Screenshot
+                </button>
+            )}
             {processedImage && (
                 <p className="text-xl">Normalization Technique</p>
             )}

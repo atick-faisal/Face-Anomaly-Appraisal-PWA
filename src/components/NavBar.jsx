@@ -1,6 +1,6 @@
 function NavBar() {
     return (
-        <div className="navbar bg-base-100 mb-4">
+        <div className="navbar mb-4">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div

@@ -8,13 +8,27 @@ function Upload({ imageSrc, onSelectImage }) {
         fileInputRef.current.click();
     };
 
+    const processFile = (file) => {
+        const originalExtension = file.name.split(".").pop();
+        const currentDateTime = new Date()
+            .toISOString()
+            .replace(/[:.]/g, "_")
+            .replace(/-/g, "_");
+
+        const newFileName = `${currentDateTime}.${originalExtension}`;
+
+        return new File([file], newFileName, {
+            type: file.type,
+        });
+    };
+
     const handleFileChange = (event) => {
         const file = event.target.files[0];
         if (file) {
             const reader = new FileReader();
             reader.onload = (e) => {
                 if (e.target.result != null) {
-                    onSelectImage(e.target.result, file);
+                    onSelectImage(e.target.result, processFile(file));
                 }
             };
             reader.readAsDataURL(file);

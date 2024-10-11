@@ -97,7 +97,8 @@ function App() {
     };
 
     const downloadScreenshot = () => {
-        html2canvas(document.body)
+        const element = screenshotRef.current;
+        html2canvas(element)
             .then((canvas) => {
                 const image = canvas.toDataURL("image/png");
                 const link = document.createElement("a");
@@ -134,7 +135,7 @@ function App() {
     };
 
     return (
-        <div ref={screenshotRef} className="max-w-md mx-auto">
+        <div className="max-w-md mx-auto">
             <div className="flex flex-col h-screen p-4 max-w-lg">
                 <NavBar />
                 <Steps screen={screen} />
@@ -170,6 +171,7 @@ function App() {
                             inputImage={imgSrc}
                             processedImage={processedImage}
                             normalizedImage={normalizedImage}
+                            screenshotRef={screenshotRef}
                         />
                     )}
                 </div>
